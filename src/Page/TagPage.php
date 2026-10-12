@@ -60,9 +60,19 @@ class TagPage implements PageDriverInterface
     ): void {
         $tagId = Arr::get($request->getQueryParams(), 'slug');
 
-        // I do support it, but it didn't work
         if (! is_numeric($tagId)) {
-            $tagId = $this->tagRepository->getIdForSlug($tagId);
+            /*
+             * 🚨 The route parameter can arrive still percent-encoded: a tag
+             * slugged 動力 is requested as /t/%E5%8B%95%E5%8A%9B, and looking that
+             * up found nothing. The null then reached findOrFail(int) and the
+             * whole tag page returned a 500 on a direct visit (reported by
+             * Subarist). Decode first; an unknown slug simply adds no SEO tags.
+             */
+            $tagId = $this->tagRepository->getIdForSlug(rawurldecode((string) $tagId));
+        }
+
+        if ($tagId === null) {
+            return;
         }
 
         try {

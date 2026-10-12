@@ -48,7 +48,9 @@ class ProfilePage implements PageDriverInterface
         ServerRequestInterface $request,
         SeoProperties $properties
     ): void {
-        $username = Arr::get($request->getQueryParams(), 'username');
+        // Percent-decoded, as on the tag page: a non-ASCII username arrives
+        // encoded and would otherwise never match, so its profile got no tags.
+        $username = rawurldecode((string) Arr::get($request->getQueryParams(), 'username'));
 
         // Scope the lookup to the requesting actor's visibility so that, on a
         // forum where the user list isn't public, an anonymous request can't
