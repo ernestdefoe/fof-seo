@@ -1,5 +1,14 @@
 # SEO for Flarum 2
 
+> [!WARNING]
+> **This extension is abandoned.** Use [`fof/seo`](https://github.com/FriendsOfFlarum/seo) instead — it is maintained by Friends of Flarum and supersedes this one. No further releases will be made here.
+>
+> ```bash
+> composer remove ernestdefoe/seo
+> composer require fof/seo
+> ```
+
+
 [![Floxum](https://floxum.com/extension/ernestdefoe/seo/badge/name)](https://floxum.com/extension/ernestdefoe/seo)
 [![Version](https://floxum.com/extension/ernestdefoe/seo/badge/highest-version)](https://floxum.com/extension/ernestdefoe/seo)
 [![Downloads](https://floxum.com/extension/ernestdefoe/seo/badge/downloads)](https://floxum.com/extension/ernestdefoe/seo)
